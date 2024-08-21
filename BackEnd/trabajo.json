@@ -1,0 +1,53 @@
+{
+  "Users_Admin": [
+    {},
+    {
+      "id": "c9d8"
+    },
+    {
+      "id": "1d11",
+      "Usuario": "Administrador_24",
+      "Contrasena": "Camion24"
+    }
+  ],
+  "Users_Trans": [
+    {
+      "Usuario": "TransportaSeguro",
+      "Contrasena": "SeguridadTrans"
+    }
+  ],
+  "Users_DCamion": [
+    {
+      "Usuario": "Propietariocm",
+      "Contrasena": "Dueñocamion24"
+    }
+  ],
+  "Users_Cliente": [
+    {
+      "Usuario": "",
+      "Contrasena": ""
+    }
+  ],
+  "Register_Cliente": [
+    {
+      "Nombre": "",
+      "Usuario": "",
+      "Contrasena": "",
+      "ConfirmarContrasena": ""
+    },
+    {
+      "id": "7531",
+      "Nombre": "Luisa martinez",
+      "Usuario": "luis23",
+      "Contrasena": "luisita",
+      "ConfirmarContrasena": "luisita"
+    },
+    {
+      "id": "5017",
+      "Nombre": "Valery Zambrano",
+      "Usuario": "valeryyyzzz",
+      "Contrasena": "valery1",
+      "ConfirmarContrasena": "valery2"
+    }
+  ]
+}

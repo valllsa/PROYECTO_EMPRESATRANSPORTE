@@ -1,0 +1,293 @@
+.login-container, .register-container {
+    width: 90%; /* Ancho flexible para adaptarse a la pantalla */
+    max-width: 500px; /* Limita el ancho máximo */
+    margin: 10px auto; /* Márgenes ajustados para pantallas pequeñas */
+    padding: 15px;
+    background-color: #fafafa; /* Fondo blanco suave */
+    border-radius: 8px;
+    border: 1px solid #db7093; /* Borde rosa suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más suave para un efecto más sutil */
+    box-sizing: border-box; /* Asegura que el padding no exceda el ancho */
+    transition: all 0.3s ease-in-out; /* Transición suave en hover */
+}
+
+/* Media query para pantallas medianas (tabletas) */
+@media (min-width: 768px) {
+    .login-container, .register-container {
+        width: 80%; /* Ancho ajustado para pantallas medianas */
+        padding: 25px;
+        margin: 20px auto; /* Márgenes aumentados para mejor apariencia */
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    }
+}
+
+/* Media query para pantallas grandes (escritorios) */
+@media (min-width: 1200px) {
+    .login-container, .register-container {
+        width: 60%; /* Ancho más estrecho para pantallas grandes */
+        max-width: 600px; /* Ancho máximo ligeramente mayor */
+        padding: 40px;
+        margin: 40px auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada para pantallas grandes */
+    }
+}
+
+/* Efecto hover para darle un toque interactivo */
+.login-container:hover, .register-container:hover {
+    transform: translateY(-5px); /* Desplazamiento ligero hacia arriba */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al hacer hover */
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 25px; /* Espacio inferior mayor */
+    color: #d63384; /* Encabezado en rosa oscuro */
+    font-weight: bold;
+}
+
+/* Estilos para el formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre elementos del formulario */
+}
+
+/* Estilos para los inputs */
+input[type="text"], input[type="password"], input[type="number"] {
+    padding: 12px;
+    border: 1px solid #db7093; /* Borde rosa suave */
+    border-radius: 5px;
+    background-color: #fff0f5; /* Fondo rosa muy claro */
+    color: #555; /* Color del texto más suave */
+    font-size: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus {
+    border-color: #c71585; /* Rosa más intenso al enfocar */
+    box-shadow: 0 0 6px rgba(219, 112, 147, 0.5); /* Sombra suave al enfocar */
+}
+
+/* Estilos para los botones */
+button {
+    padding: 12px;
+    background-color: #db7093; /* Rosa suave */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 10px 0; /* Espacio superior e inferior */
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #c71585; /* Rosa más intenso al pasar el cursor */
+    transform: scale(1.03); /* Aumenta el tamaño ligeramente al pasar el cursor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra adicional al pasar el cursor */
+}
+
+/* Enlace para el registro */
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #db7093; /* Color del enlace en rosa suave */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #c71585; /* Cambia el color al pasar el cursor */
+    text-decoration: underline;
+}
+
+/* ====== ESTILOS DASHBOARD ====== */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #fef5f7; /* Fondo rosa muy claro */
+    padding: 20px;
+    color: #444;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #c71585; /* Rosa intenso para el título */
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* Contenedor principal */
+.container {
+    margin-bottom: 25px;
+    padding: 25px;
+    background-color: #fafafa; /* Fondo gris muy claro */
+    border-radius: 10px;
+    border: 1px solid #db7093; /* Borde rosa suave */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Contenedor de pestañas */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.tabs button {
+    padding: 12px 25px;
+    background-color: #db7093; /* Botón rosa suave */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 15px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tabs button:hover {
+    background-color: #c71585; /* Botón rosa más intenso al pasar el cursor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave al pasar el cursor */
+}
+
+/* Contenedor de contenido de pestañas */
+.tab-content {
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* ====== FORMULARIOS ====== */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fff0f5; /* Fondo rosa muy claro */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #db7093; /* Borde rosa suave */
+}
+
+/* Estilos de select e input */
+select, input[type="number"] {
+    padding: 10px;
+    border: 1px solid #db7093; /* Borde rosa suave */
+    border-radius: 5px;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #444; /* Color del texto */
+}
+
+input::placeholder {
+    color: #db7093; /* Color del texto del placeholder */
+}
+
+/* ====== ESTILOS PARA LA PÁGINA DE BIENVENIDA ====== */
+.bienvenida-container {
+    width: 850px;
+    margin: 60px auto;
+    padding: 45px;
+    background-color: #fafafa; /* Fondo blanco suave */
+    border-radius: 10px;
+    border: 1px solid;
+    border-image: linear-gradient(to right, #db7093, #e57373) 1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    text-align: center;
+}
+
+.bienvenida-imagen {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    border: 3px solid #db7093;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bienvenida-imagen img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bienvenida-container h1 {
+    color: #db7093; /* Encabezado en rosa suave */
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Sombra para el texto */
+}
+
+.bienvenida-container p {
+    color: #444; /* Texto en gris oscuro */
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1.5;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.bienvenida-buttons {
+    margin-top: 30px;
+}
+
+.bienvenida-button {
+    padding: 12px 25px;
+    background-color: #db7093; /* Botón rosa suave */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.bienvenida-button:hover {
+    background-color: #c71585; /* Rosa más intenso al pasar el cursor */
+    transform: scale(1.04); /* Aumenta el tamaño ligeramente al pasar el cursor */
+}
+
+/* ====== DISEÑO RESPONSIVO ====== */
+@media (max-width: 768px) {
+    .bienvenida-container {
+        width: 95%;
+        padding: 30px;
+    }
+
+    .bienvenida-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+.back-button {
+    background-color: transparent;
+    border-radius: 50px ;
+    border: 1px solid #db7093; 
+    font-size: 16px;
+    cursor: pointer;
+    color: #c71585; /* Color azul para la flecha */
+    margin-bottom: 7px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .back-button:hover {
+    text-decoration: underline; /* Subraya el texto al pasar el ratón */
+  }
+  
+  .back-button:focus {
+    outline: none; /* Elimina el borde de enfoque */
+  }
+  
