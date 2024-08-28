@@ -6,7 +6,7 @@ import axios from 'axios';
 function LoginAdmin() {
   const [formData, setFormData] = useState({
     Usuario: '',
-    Contrasena: ''
+    Contraseña: ''
   });
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ function LoginAdmin() {
 
     try {
       // Solicitud GET para obtener los datos del usuario
-      const response = await axios.get(`http://localhost:4000/Register_Cliente?Usuario=${formData.Usuario}`);
+      const response = await axios.get(`http://localhost:4000/Cliente?Usuario=${formData.Usuario}`);
       
       if (response.data.length > 0) {
         // Buscar el usuario que coincida con el nombre de usuario proporcionado
@@ -67,12 +67,12 @@ function LoginAdmin() {
           required
         />
         <input
-          value={formData.Contrasena}
+          value={formData.Contraseña}
           onChange={handleChange}
           type="password"
           className="form-control"
           placeholder="Contraseña"
-          name="Contrasena"
+          name="Contraseña"
           required
         />
         <button type="submit">Ingresar</button>

@@ -1,86 +1,111 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../VistaCliente/Estilos.css';
 import axios from 'axios';
+import '../VistaCliente/Estilos.css'; // Asegúrate de que la ruta del archivo CSS sea correcta
 
 function RegistroCliente() {
   const [formData, setFormData] = useState({
     Nombre: '',
-    Usuario: '',
-    Contrasena: '',
-    ConfirmarContrasena: '',
+    NumeroDocumento: '',
+    Telefono: '',
+    Correo: '',
   });
 
   const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value
-    });
-  };
-
-  const enviar = async (event) => {
-    event.preventDefault();
-
-    if (formData.Contraseña !== formData.ConfirmarContraseña) {
-      alert("Las contraseñas no coinciden.");
-      return;
-    }
+  const enviar = async (e) => {
+    e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:4000/Register_Cliente", formData);
-      alert("Éxito: " + response.data.message);
-      navigate('/LoginCliente'); // Redirige al login después de registrarse con éxito
+      // Solicitud POST para enviar los datos del usuario
+      const response = await axios.post(`http://localhost:4000/Solicitudes`, {
+        Nombre: formData.Nombre,
+        NumeroDocumento: formData.NumeroDocumento,
+        Telefono: formData.Telefono,
+        Correo: formData.Correo,
+      });
+
+      if (response.status === 201) {
+        alert("Solicitud enviada, espere la confirmación del administrador");
+        navigate("/"); // Redirigir a la página principal
+      }
     } catch (error) {
       console.error(error);
-      alert("Error al enviar los datos: " + error.message);
+      alert("Ocurrió un error al enviar la solicitud");
     }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   return (
-    <div className='register-container'>
-      <h2>Registro</h2>
-      <form onSubmit={enviar}>
-
-        <input
-        value={formData.Nombre}
-        onChange={handleChange} 
-        type="text" 
-        className="input-group form-control" 
-        placeholder="Nombre" 
-        name="Nombre" 
-        required 
-        />
-        <input
-          value={formData.Usuario}
-          onChange={handleChange} 
-          type="text" 
-          className="input-group form-control" 
-          placeholder="Usuario" 
-          name="Usuario" 
-          required
-        />
-        <input
-          value={formData.Contrasena}
-          onChange={handleChange} 
-          type="text" 
-          className="input-group form-control" 
-          placeholder="Contrasena" 
-          name="Contrasena" 
-          required
-        />
-        <input
-        value={formData.ConfirmarContrasena}
-        onChange={handleChange} 
-        type="text" 
-        className="input-group form-control" 
-        placeholder="ConfirmarContrasena" 
-        name="ConfirmarContrasena" 
-        required
-        />
-        <button type="submit">Registrar</button>
-      </form>
+    <div className="login-page">
+      <div className="login-box">
+        <div className="login-logo">
+          <img src="ruta/a/tu/logo.png" alt="Logo" className="logo" />
+        </div>
+        <div className="card">
+          <div className="card-body login-card-body">
+            <p className="login-box-msg">Enviar solicitud para creación de cuenta</p>
+            <form onSubmit={enviar}>
+              <div className="mb-2">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="Nombre"
+                  required
+                  placeholder="Nombre"
+                  value={formData.Nombre}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-2">
+                <input
+                  type="number"
+                  className="form-control"
+                  name="NumeroDocumento"
+                  required
+                  placeholder="Número Documento"
+                  value={formData.NumeroDocumento}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-2">
+                <input
+                  type="number"
+                  className="form-control"
+                  name="Telefono"
+                  required
+                  placeholder="Número Telefónico"
+                  value={formData.Telefono}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-2">
+                <input
+                  type="email"
+                  className="form-control"
+                  name="Correo"
+                  required
+                  placeholder="Correo Electrónico"
+                  value={formData.Correo}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <button type="submit" className="btn btn-success btn-block">
+                  Enviar solicitud
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

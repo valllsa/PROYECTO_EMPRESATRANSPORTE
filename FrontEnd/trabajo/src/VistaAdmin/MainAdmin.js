@@ -1,26 +1,62 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './styles_admin.css';
+import axios from 'axios';
 
-const MainAdmin = () => {
+
+const MainAdmin = () => { 
+    const [formData, setFormData] = useState({
+        Matricula: '',
+        Capacidad: '',
+        Gasolina: '',
+        CargaActual: 0
+    });
+
     const [camiones, setCamiones] = useState([]);
-    const [newCamion, setNewCamion] = useState({ matricula: '', capacidad: 0, consumo: 0, cargaActual: 0 });
     const [selectedCamion, setSelectedCamion] = useState(null);
     const [carga, setCarga] = useState(0);
 
-    // Cargar camiones del localStorage cuando el componente se monta
     useEffect(() => {
-        const storedCamiones = JSON.parse(localStorage.getItem('camiones')) || [];
-        setCamiones(storedCamiones);
+        // Obtener los camiones registrados al cargar el componente
+        const fetchCamiones = async () => {
+            try {
+                const response = await axios.get("http://localhost:4000/ListaCam");
+                setCamiones(response.data);
+            } catch (error) {
+                console.error("Error al obtener los camiones:", error);
+            }
+        };
+        fetchCamiones();
     }, []);
 
-    // Guardar camiones en localStorage cuando cambian
-    useEffect(() => {
-        localStorage.setItem('camiones', JSON.stringify(camiones));
-    }, [camiones]);
+    const enviar = async (e) => {
+        e.preventDefault();
 
-    const handleRegisterCamion = () => {
-        setCamiones([...camiones, newCamion]);
-        setNewCamion({ matricula: '', capacidad: 0, consumo: 0, cargaActual: 0 });
+        try {
+            const response = await axios.post("http://localhost:4000/ListaCam", formData);
+            alert("Éxito: " + response.data.message);
+            
+            // Actualizar la lista de camiones
+            setCamiones([...camiones, formData]);
+
+            // Reiniciar el formulario
+            setFormData({
+                Matricula: '',
+                Capacidad: '',
+                Gasolina: '',
+                CargaActual: 0
+            });
+        } catch (error) {
+            console.error(error);
+            alert("Error al enviar los datos: " + error.message);
+        }
+    };
+
+    const handleChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
     };
 
     const handleSelectCamion = (camion) => {
@@ -28,97 +64,108 @@ const MainAdmin = () => {
     };
 
     const handleUpdateCamion = () => {
-        setCamiones(camiones.map(c => c.matricula === selectedCamion.matricula ? selectedCamion : c));
+        setCamiones(camiones.map(c => c.Matricula === selectedCamion.Matricula ? selectedCamion : c));
         setSelectedCamion(null);
     };
 
     const handleAssignCamion = () => {
-        const camionAsignado = camiones.find(c => c.capacidad >= carga && c.cargaActual === 0);
+        const camionAsignado = camiones.find(c => c.Capacidad >= carga && c.CargaActual === 0);
         if (camionAsignado) {
-            camionAsignado.cargaActual = carga;
+            camionAsignado.CargaActual = carga;
             setCamiones([...camiones]);
-            alert(`Camión con matrícula ${camionAsignado.matricula} asignado a la carga de ${carga} kg.`);
+            alert(`Camión con matrícula ${camionAsignado.Matricula} asignado a la carga de ${carga} kg.`);
         } else {
             alert("No hay camiones disponibles con suficiente capacidad.");
         }
     };
 
-    // Función para eliminar un camión
     const handleDeleteCamion = (matricula) => {
-        const updatedCamiones = camiones.filter(c => c.matricula !== matricula);
+        const updatedCamiones = camiones.filter(c => c.Matricula !== matricula);
         setCamiones(updatedCamiones);
     };
+
     const handleLogout = () => {
+        alert("Redirigiendo a la página de inicio de sesión...");
         window.location.href = '/PaginaBienvenida'; // Redirigir al usuario a la página de inicio de sesión
     };
 
-    return (
-        <div className="container1">
-            <button onClick={handleLogout} className="logout-button">Cerrar Sesión</button>
-        <div className="container">
-            <h1>Gestión de Camiones</h1>
+    return ( 
             
-            <h2>Registrar Nuevo Camión</h2>
-            <input 
-                type="text" 
-                placeholder="Matrícula" 
-                value={newCamion.matricula} 
-                onChange={(e) => setNewCamion({ ...newCamion, matricula: e.target.value })} 
-            />
-            <input 
-                type="number" 
-                placeholder="Capacidad de carga (kg)" 
-                value={newCamion.capacidad} 
-                onChange={(e) => setNewCamion({ ...newCamion, capacidad: parseInt(e.target.value) })} 
-            />
-            <input 
-                type="number" 
-                placeholder="Consumo de gasolina (gal/km)" 
-                value={newCamion.consumo} 
-                onChange={(e) => setNewCamion({ ...newCamion, consumo: parseFloat(e.target.value) })} 
-            />
-            <button onClick={handleRegisterCamion}>Registrar Camión</button>
-
-            <h2>Lista de Camiones</h2>
-            <ul>
-                {camiones.map((camion, index) => (
-                    <li key={index}>
-                        {`Matrícula: ${camion.matricula}, Capacidad: ${camion.capacidad} kg, Consumo: ${camion.consumo} gal/km, Carga Actual: ${camion.cargaActual} kg`}
-                        <button onClick={() => handleSelectCamion(camion)}>Editar</button>
-                        <button onClick={() => handleDeleteCamion(camion.matricula)}>Eliminar</button>
-                    </li>
-                ))}
-            </ul>
-
-            {selectedCamion && (
-                <div>
-                    <h2>Actualizar Información del Camión</h2>
+                 <div>
+            <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="#">Tu Marca</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className="nav-link active" aria-current="page" to="/solicitudes">Solicitudes</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/MainAdmin">Camiones</Link> {/* Cambia el enlace aquí */}
+                            </li>
+                        </ul>
+                        <div className="ml-auto d-flex align-items-center">
+                            <button type="button" onClick={handleLogout} className="btn btn-primary">Cerrar Sesión</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+                <h1>Gestión de Camiones</h1>
+                
+                <h2>Registrar Nuevo Camión</h2>
+                <form onSubmit={enviar}>
+                    <input 
+                        type="text" 
+                        placeholder="Matrícula" 
+                        name="Matricula"
+                        value={formData.Matricula} 
+                        onChange={handleChange}
+                        required
+                    />
                     <input 
                         type="number" 
                         placeholder="Capacidad de carga (kg)" 
-                        value={selectedCamion.capacidad} 
-                        onChange={(e) => setSelectedCamion({ ...selectedCamion, capacidad: parseInt(e.target.value) })} 
+                        name="Capacidad"
+                        value={formData.Capacidad} 
+                        onChange={handleChange}
+                        required
                     />
                     <input 
                         type="number" 
                         placeholder="Consumo de gasolina (gal/km)" 
-                        value={selectedCamion.consumo} 
-                        onChange={(e) => setSelectedCamion({ ...selectedCamion, consumo: parseFloat(e.target.value) })} 
+                        name="Gasolina"
+                        value={formData.Gasolina} 
+                        onChange={handleChange}
+                        required
                     />
-                    <button onClick={handleUpdateCamion}>Actualizar Camión</button>
-                </div>
-            )}
+                    <button type="submit">Registrar Camión</button>
+                </form>
 
-            <h2>Asignar Camión a una Carga</h2>
-            <input 
-                type="number" 
-                placeholder="Peso de la carga (kg)" 
-                value={carga} 
-                onChange={(e) => setCarga(parseInt(e.target.value))} 
-            />
-            <button onClick={handleAssignCamion}>Asignar Camión</button>
-        </div>
-        </div>
+                <h2>Camiones Registrados</h2>
+                <table className="camiones-table">
+                    <thead>
+                        <tr>
+                            <th>Matrícula</th>
+                            <th>Capacidad (kg)</th>
+                            <th>Consumo (gal/km)</th>
+                            <th>Carga Actual (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {camiones.map((camion, index) => (
+                            <tr key={index}>
+                                <td>{camion.Matricula}</td>
+                                <td>{camion.Capacidad}</td>
+                                <td>{camion.Gasolina}</td>
+                                <td>{camion.CargaActual}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
     );
 };
 

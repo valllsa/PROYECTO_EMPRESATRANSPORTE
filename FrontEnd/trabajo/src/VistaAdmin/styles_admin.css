@@ -1,8 +1,7 @@
-/* styles_admin.css */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #e6f0ff; /* Fondo azul claro */
+    color: #003366; /* Texto azul oscuro */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -16,12 +15,15 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.container1 .logout-button{
+
+.logout-button {
     margin: 1px auto;
-    background-color: #b83c75;
-    margin-left: 690px ;
+    background-color: #003366; /* Azul oscuro */
+    color: white;
+    margin-left: 690px;
 }
-.container{
+
+.container {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
@@ -30,18 +32,9 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-
-h1 {
+h1, h2 {
+    color: #003366; /* Azul oscuro */
     text-align: center;
-    color: #b83c75;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-h2 {
-    color: #b83c75;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
 }
 
 input {
@@ -49,21 +42,21 @@ input {
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
-    border: 1px solid #d1b3c4;
+    border: 1px solid #003366; /* Borde azul oscuro */
     font-size: 1rem;
 }
 
 input:focus {
     outline: none;
-    border-color: #b83c75;
-    box-shadow: 0 0 5px rgba(184, 60, 117, 0.3);
+    border-color: #001a33; /* Azul más oscuro al enfocar */
+    box-shadow: 0 0 5px rgba(0, 51, 102, 0.3); /* Sombra azul suave al enfocar */
 }
 
 button {
     padding: 5px 10px;
     margin-top: 10px;
     margin-right: 10px;
-    background-color: #b83c75; /* Rosa oscuro */
+    background-color: #003366; /* Azul oscuro */
     color: white;
     border: none;
     border-radius: 6px;
@@ -76,26 +69,30 @@ button {
 }
 
 button:hover {
-    background-color: #9c3061;
+    background-color: #001a33; /* Azul más oscuro al pasar el cursor */
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+.camiones-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-li {
+.camiones-table th, .camiones-table td {
+    border: 1px solid #003366;
     padding: 10px;
-    margin: 5px 0;
-    background-color: #f8e7ee;
-    border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+    text-align: left;
 }
 
-li:hover {
-    background-color: #f3d2db;
+.camiones-table th {
+    background-color: #003366;
+    color: white;
 }
 
+.camiones-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-
+.camiones-table tr:hover {
+    background-color: #cce0ff; /* Azul más claro al pasar el cursor */
+}

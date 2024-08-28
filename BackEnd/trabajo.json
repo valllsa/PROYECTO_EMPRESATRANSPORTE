@@ -1,9 +1,5 @@
 {
   "Users_Admin": [
-    {},
-    {
-      "id": "c9d8"
-    },
     {
       "id": "1d11",
       "Usuario": "Administrador_24",
@@ -13,41 +9,88 @@
   "Users_Trans": [
     {
       "Usuario": "TransportaSeguro",
-      "Contrasena": "SeguridadTrans"
+      "Contrasena": "SeguridadTrans",
+      "id": "dd9d"
     }
   ],
   "Users_DCamion": [
     {
       "Usuario": "Propietariocm",
-      "Contrasena": "Dueñocamion24"
+      "Contrasena": "Dueñocamion24",
+      "id": "8836"
     }
   ],
-  "Users_Cliente": [
+  "Cliente": [
     {
-      "Usuario": "",
-      "Contrasena": ""
+      "id": "720f",
+      "Nombre": "dairon moreno",
+      "Correo": "dairon_chapid@soy.sena.edu.co",
+      "NumeroDocumento": "1081399564",
+      "Usuario": "dairon moreno1081399564",
+      "Contraseña": "1081399564"
+    },
+    {
+      "id": "368b",
+      "Nombre": "dairon moreno",
+      "Correo": "dairon_chapid@soy.sena.edu.co",
+      "NumeroDocumento": "1081399564",
+      "Usuario": "dairon moreno1081399564",
+      "Contraseña": "1081399564"
+    },
+    {
+      "id": "6211",
+      "Nombre": "dairon moreno",
+      "Correo": "dairon_chapid@soy.sena.edu.co",
+      "NumeroDocumento": "1081399564",
+      "Usuario": "dairon moreno1081399564",
+      "Contraseña": "1081399564"
+    },
+    {
+      "id": "c11c",
+      "Nombre": "dairon moreno",
+      "Correo": "dairon_chapid@soy.sena.edu.co",
+      "NumeroDocumento": "1081399564",
+      "Usuario": "dairon moreno1081399564",
+      "Contraseña": "1081399564"
     }
   ],
-  "Register_Cliente": [
+  "Solicitudes": [
     {
-      "Nombre": "",
-      "Usuario": "",
-      "Contrasena": "",
-      "ConfirmarContrasena": ""
+      "id": "8e39",
+      "Nombre": "dairon moreno",
+      "NumeroDocumento": "1081399564",
+      "Telefono": "3118482726",
+      "Correo": "dairon_chapid@soy.sena.edu.co"
+    }
+  ],
+  "ListaCam": [
+    {
+      "id": "d99f",
+      "Matricula": "MNC876",
+      "Capacidad": "15000",
+      "Gasolina": "0.45",
+      "CargaActual": 0
     },
     {
-      "id": "7531",
-      "Nombre": "Luisa martinez",
-      "Usuario": "luis23",
-      "Contrasena": "luisita",
-      "ConfirmarContrasena": "luisita"
+      "id": "9a76",
+      "Matricula": "SDASD",
+      "Capacidad": "23423",
+      "Gasolina": "43242",
+      "CargaActual": 0
+    }
+  ],
+  "AlquilarCam": [
+    {
+      "id": "78c2",
+      "camionId": "MNC876",
+      "carga": "",
+      "destino": ""
     },
     {
-      "id": "5017",
-      "Nombre": "Valery Zambrano",
-      "Usuario": "valeryyyzzz",
-      "Contrasena": "valery1",
-      "ConfirmarContrasena": "valery2"
+      "id": "2752",
+      "camionId": "MNC876",
+      "carga": "10000",
+      "destino": "bogota"
     }
   ]
 }

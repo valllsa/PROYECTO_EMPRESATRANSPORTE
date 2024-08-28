@@ -24,7 +24,7 @@ function LoginAdmin() {
 
         if (usuario && usuario.Contrasena === formData.Contrasena) {
           alert("Éxito al iniciar sesión");
-          navigate('/MainAdmin');
+          navigate('/BienvenidaAdmin');
         } else {
           alert("Contraseña incorrecta");
         }
